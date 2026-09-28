@@ -1,0 +1,53 @@
+# Python / uv
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# credentials: never commit
+scripts/ibm_init*.py
+.env
+.env.*
+.qiskit/
+*.token
+
+# engineered features: only the capped pools of PTB-XL and Apnea-ECG are published
+# (WESAD features are not redistributable, full pools are regenerable)
+data/features/*
+!data/features/apnea_capped_train.npz
+!data/features/apnea_capped_test.npz
+!data/features/ptbxl_capped_dev.npz
+!data/features/ptbxl_capped_test.npz
+
+# hardware job records are published gzip-compressed (<job>.json.gz); the uncompressed
+# archives stay local, the index and the run plan are published as plain JSON
+data/hardware/*/*.json
+!data/hardware/*/index.json
+!data/hardware/*/plan.json
+
+# local-only data: logs, run manifests, QPU ledger, job inventories, caches, figure previews
+data/logs/
+data/manifests/
+data/ibm_budget_ledger.jsonl
+data/results/*_jobs_inventory.json
+data/results/figures_v2/
+data/results/analysis_v2/_baseline_cache/
+data/results/screen/*/stale_*/
+
+# summary tables and data figures, generated locally from data/results/ by ./reproduce.sh tables
+/tables/
+/figures/
+
+# local working material, the local extension of reproduce.sh, and the paper sources (not part of this repository)
+reproduce.local.sh
+CLAUDE.md
+PLAN.md
+docs/
+archive/
+github/
+manuscript/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

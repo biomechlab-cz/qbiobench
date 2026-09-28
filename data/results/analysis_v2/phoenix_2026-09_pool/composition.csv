@@ -1,0 +1,12 @@
+task,cell,n_test,n_clusters,per_cluster_min,per_cluster_median,per_cluster_max,pos_frac
+apnea,fqk,510,35,6,14.0,23,0.5019607843137255
+apnea,pqk,510,35,6,14.0,23,0.5019607843137255
+ptbxl,fqk,512,504,1,1.0,3,0.259375
+ptbxl,pqk,512,504,1,1.0,3,0.259375
+ptbxl,pqk-zz,512,504,1,1.0,3,0.259375
+apnea,vqc-sv,510,35,6,14.0,23,0.5019607843137255
+apnea,vqc-noisy,510,35,6,14.0,23,0.5019607843137255
+ptbxl,vqc-sv,512,504,1,1.0,3,0.259375
+ptbxl,vqc-noisy,512,504,1,1.0,3,0.259375
+apnea,vqc-sv-noent,510,35,6,14.0,23,0.5019607843137255
+ptbxl,vqc-sv-noent,512,504,1,1.0,3,0.259375

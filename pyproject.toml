@@ -1,0 +1,36 @@
+[project]
+name = "qbiobench"
+version = "1.0.0"
+description = "QBioBench: a real-hardware, calibration-aware benchmark of quantum and classical learning on peripheral biosignals"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    # --- Quantum stack (Qiskit 2.x / Runtime V2) ---
+    "qiskit>=2.0",
+    "qiskit-ibm-runtime>=0.30",
+    "qiskit-aer>=0.15",
+    "qiskit-machine-learning>=0.8",
+    "mapomatic>=0.10",
+    # --- Classical ML ---
+    "scikit-learn>=1.4",
+    "xgboost>=2.0",
+    # --- Biosignal preprocessing ---
+    "neurokit2>=0.2.7",
+    "cvxopt>=1.3",  # required by NeuroKit2 cvxEDA phasic/tonic decomposition (T3 WESAD)
+    "wfdb>=4.1",
+    # --- Numerics / data ---
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pandas>=2.1",
+    # --- Stats (bootstrap CIs, Wilcoxon, Benjamini-Hochberg FDR) ---
+    "statsmodels>=0.14",
+    # --- Viz (figures exported to PDF) ---
+    "matplotlib>=3.8",
+    # --- Utilities ---
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "joblib>=1.3",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,512 @@
+[
+ {
+  "job_id": "dargfqihcrkc73drka9g",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:46:50.278398+02:00",
+  "quantum_seconds": 6,
+  "file": "dargfqihcrkc73drka9g.json"
+ },
+ {
+  "job_id": "dargfvdvr3kc73eit4fg",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:47:09.502658+02:00",
+  "quantum_seconds": 15,
+  "file": "dargfvdvr3kc73eit4fg.json"
+ },
+ {
+  "job_id": "darggaahcrkc73drkao0",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:47:53.222819+02:00",
+  "quantum_seconds": 95,
+  "file": "darggaahcrkc73drkao0.json"
+ },
+ {
+  "job_id": "darghstvr3kc73eit6j0",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:51:15.802563+02:00",
+  "quantum_seconds": 13,
+  "file": "darghstvr3kc73eit6j0.json"
+ },
+ {
+  "job_id": "dargi5rg95ks73eeap6g",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:51:52.130502+02:00",
+  "quantum_seconds": 21,
+  "file": "dargi5rg95ks73eeap6g.json"
+ },
+ {
+  "job_id": "dargii3g95ks73eeaprg",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:52:40.770550+02:00",
+  "quantum_seconds": 6,
+  "file": "dargii3g95ks73eeaprg.json"
+ },
+ {
+  "job_id": "dargimlvr3kc73eit850",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:52:58.195534+02:00",
+  "quantum_seconds": 15,
+  "file": "dargimlvr3kc73eit850.json"
+ },
+ {
+  "job_id": "dargj1rojkfs738o4420",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:53:43.873082+02:00",
+  "quantum_seconds": 95,
+  "file": "dargj1rojkfs738o4420.json"
+ },
+ {
+  "job_id": "dargkkrg95ks73eeau9g",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:57:07.174366+02:00",
+  "quantum_seconds": 13,
+  "file": "dargkkrg95ks73eeau9g.json"
+ },
+ {
+  "job_id": "dargktrojkfs738o4840",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:57:43.529077+02:00",
+  "quantum_seconds": 21,
+  "file": "dargktrojkfs738o4840.json"
+ },
+ {
+  "job_id": "darglbtvr3kc73eitdag",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:58:39.224506+02:00",
+  "quantum_seconds": 14,
+  "file": "darglbtvr3kc73eitdag.json"
+ },
+ {
+  "job_id": "darglp3g95ks73eeavv0",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 01:59:32.151075+02:00",
+  "quantum_seconds": 21,
+  "file": "darglp3g95ks73eeavv0.json"
+ },
+ {
+  "job_id": "dargpbbojkfs738o4er0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:07:09.546485+02:00",
+  "quantum_seconds": 14,
+  "file": "dargpbbojkfs738o4er0.json"
+ },
+ {
+  "job_id": "dargpldvr3kc73eitk7g",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:07:49.304126+02:00",
+  "quantum_seconds": 24,
+  "file": "dargpldvr3kc73eitk7g.json"
+ },
+ {
+  "job_id": "dargq3bg95ks73eeb6og",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:08:45.196867+02:00",
+  "quantum_seconds": 11,
+  "file": "dargq3bg95ks73eeb6og.json"
+ },
+ {
+  "job_id": "dargqadvr3kc73eitl30",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:09:13.461078+02:00",
+  "quantum_seconds": 11,
+  "file": "dargqadvr3kc73eitl30.json"
+ },
+ {
+  "job_id": "dargqi5vr3kc73eitlag",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:09:44.610828+02:00",
+  "quantum_seconds": 11,
+  "file": "dargqi5vr3kc73eitlag.json"
+ },
+ {
+  "job_id": "dargqq5vr3kc73eitlog",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:10:16.271484+02:00",
+  "quantum_seconds": 11,
+  "file": "dargqq5vr3kc73eitlog.json"
+ },
+ {
+  "job_id": "dargr1bojkfs738o4h6g",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:10:45.244707+02:00",
+  "quantum_seconds": 11,
+  "file": "dargr1bojkfs738o4h6g.json"
+ },
+ {
+  "job_id": "dargr8tvr3kc73eitm80",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:11:15.514909+02:00",
+  "quantum_seconds": 11,
+  "file": "dargr8tvr3kc73eitm80.json"
+ },
+ {
+  "job_id": "dargrg3g95ks73eeb8a0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:11:44.865249+02:00",
+  "quantum_seconds": 11,
+  "file": "dargrg3g95ks73eeb8a0.json"
+ },
+ {
+  "job_id": "dargro2hcrkc73drksi0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:12:16.640465+02:00",
+  "quantum_seconds": 8,
+  "file": "dargro2hcrkc73drksi0.json"
+ },
+ {
+  "job_id": "dargrt3g95ks73eeb8mg",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:12:36.975758+02:00",
+  "quantum_seconds": 15,
+  "file": "dargrt3g95ks73eeb8mg.json"
+ },
+ {
+  "job_id": "dargs8rg95ks73eeb930",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:13:23.100499+02:00",
+  "quantum_seconds": 95,
+  "file": "dargs8rg95ks73eeb930.json"
+ },
+ {
+  "job_id": "darguerg95ks73eebbcg",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:18:03.785387+02:00",
+  "quantum_seconds": 8,
+  "file": "darguerg95ks73eebbcg.json"
+ },
+ {
+  "job_id": "darguk3g95ks73eebbm0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:18:24.758532+02:00",
+  "quantum_seconds": 15,
+  "file": "darguk3g95ks73eebbm0.json"
+ },
+ {
+  "job_id": "darguvqhcrkc73drl04g",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:19:11.620715+02:00",
+  "quantum_seconds": 96,
+  "file": "darguvqhcrkc73drl04g.json"
+ },
+ {
+  "job_id": "darh103g95ks73eebes0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:23:28.997786+02:00",
+  "quantum_seconds": 14,
+  "file": "darh103g95ks73eebes0.json"
+ },
+ {
+  "job_id": "darh1dbg95ks73eebf80",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:24:21.893731+02:00",
+  "quantum_seconds": 22,
+  "file": "darh1dbg95ks73eebf80.json"
+ },
+ {
+  "job_id": "darh23ahcrkc73drl3hg",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:25:49.085833+02:00",
+  "quantum_seconds": 12,
+  "file": "darh23ahcrkc73drl3hg.json"
+ },
+ {
+  "job_id": "darh2cihcrkc73drl3u0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:26:26.198688+02:00",
+  "quantum_seconds": 13,
+  "file": "darh2cihcrkc73drl3u0.json"
+ },
+ {
+  "job_id": "darh2m2hcrkc73drl470",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:27:04.422692+02:00",
+  "quantum_seconds": 13,
+  "file": "darh2m2hcrkc73drl470.json"
+ },
+ {
+  "job_id": "darh302hcrkc73drl4ig",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:27:44.516987+02:00",
+  "quantum_seconds": 13,
+  "file": "darh302hcrkc73drl4ig.json"
+ },
+ {
+  "job_id": "darh3abg95ks73eebhb0",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:28:25.444602+02:00",
+  "quantum_seconds": 13,
+  "file": "darh3abg95ks73eebhb0.json"
+ },
+ {
+  "job_id": "darh3ldvr3kc73eitveg",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 02:29:09.446050+02:00",
+  "quantum_seconds": 13,
+  "file": "darh3ldvr3kc73eitveg.json"
+ },
+ {
+  "job_id": "daro7ntvr3kc73ej79f0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:35:43.803815+02:00",
+  "quantum_seconds": 11,
+  "file": "daro7ntvr3kc73ej79f0.json"
+ },
+ {
+  "job_id": "daro7vjg95ks73eekqeg",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:36:14.195667+02:00",
+  "quantum_seconds": 11,
+  "file": "daro7vjg95ks73eekqeg.json"
+ },
+ {
+  "job_id": "daro873g95ks73eekqm0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:36:44.576845+02:00",
+  "quantum_seconds": 11,
+  "file": "daro873g95ks73eekqm0.json"
+ },
+ {
+  "job_id": "daro8ebg95ks73eekqt0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:37:13.475248+02:00",
+  "quantum_seconds": 11,
+  "file": "daro8ebg95ks73eekqt0.json"
+ },
+ {
+  "job_id": "daro8lbg95ks73eekr4g",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:37:41.681044+02:00",
+  "quantum_seconds": 11,
+  "file": "daro8lbg95ks73eekr4g.json"
+ },
+ {
+  "job_id": "daro8srg95ks73eekrdg",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:38:11.961365+02:00",
+  "quantum_seconds": 9,
+  "file": "daro8srg95ks73eekrdg.json"
+ },
+ {
+  "job_id": "daro93ahcrkc73druf7g",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:38:38.131316+02:00",
+  "quantum_seconds": 9,
+  "file": "daro93ahcrkc73druf7g.json"
+ },
+ {
+  "job_id": "daro9a3g95ks73eekrr0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:39:04.910927+02:00",
+  "quantum_seconds": 9,
+  "file": "daro9a3g95ks73eekrr0.json"
+ },
+ {
+  "job_id": "daro9gjg95ks73eeks20",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:39:31.025965+02:00",
+  "quantum_seconds": 9,
+  "file": "daro9gjg95ks73eeks20.json"
+ },
+ {
+  "job_id": "daro9nbojkfs738oe5b0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:39:57.553833+02:00",
+  "quantum_seconds": 9,
+  "file": "daro9nbojkfs738oe5b0.json"
+ },
+ {
+  "job_id": "daro9trojkfs738oe5h0",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "estimator",
+  "status": "DONE",
+  "created": "2026-09-26 10:40:23.746621+02:00",
+  "quantum_seconds": 9,
+  "file": "daro9trojkfs738oe5h0.json"
+ },
+ {
+  "job_id": "darg0qdvr3kc73eisjgg",
+  "session_id": "e50788f2-d343-45d8-939c-73cd308ae974",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:14:49.966026+02:00",
+  "quantum_seconds": 3,
+  "file": "darg0qdvr3kc73eisjgg.json"
+ },
+ {
+  "job_id": "dargmmrojkfs738o4abg",
+  "session_id": "5bc5cc72-047f-42c0-8e2e-0c903a8e14a5",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 02:01:32.017996+02:00",
+  "quantum_seconds": 3,
+  "file": "dargmmrojkfs738o4abg.json"
+ },
+ {
+  "job_id": "daro7lahcrkc73drudrg",
+  "session_id": "3dadc1c6-74b3-4c6b-91fe-11e19242fe42",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 10:35:33.735857+02:00",
+  "quantum_seconds": 3,
+  "file": "daro7lahcrkc73drudrg.json"
+ },
+ {
+  "job_id": "darfs0jojkfs738o39gg",
+  "session_id": "7cfeaecc-3ac7-4973-a750-195653fd4991",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:04:34.673463+02:00",
+  "quantum_seconds": 3,
+  "file": "darfs0jojkfs738o39gg.json"
+ },
+ {
+  "job_id": "darg03rg95ks73eea4m0",
+  "session_id": "7cfeaecc-3ac7-4973-a750-195653fd4991",
+  "backend": "ibm_phoenix",
+  "primitive": "sampler",
+  "status": "DONE",
+  "created": "2026-09-26 01:13:19.310332+02:00",
+  "quantum_seconds": 6,
+  "file": "darg03rg95ks73eea4m0.json"
+ }
+]

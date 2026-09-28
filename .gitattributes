@@ -1,0 +1,12 @@
+# Normalise line endings in the repository: text files are stored with LF and checked out with LF on
+# every platform, so regenerated tables and CSVs compare equal under git diff whether they
+# were written on Windows (CRLF) or on Linux and macOS (LF).
+* text=auto eol=lf
+
+# binary artefacts
+*.gz binary
+*.npz binary
+*.pkl binary
+*.pdf binary
+*.png binary
+*.docx binary
