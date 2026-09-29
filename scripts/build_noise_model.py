@@ -10,8 +10,8 @@ Output data/noise/<name>.pkl holds {noise_model (dict), target (qiskit Target), 
 the preset pass manager (VF2 layout scoring) places simulated circuits on low-error qubits the
 same way transpilation does for hardware, and the noise model then attaches the matching errors.
 
-Shipped snapshots: heron_r3_2026-06-11 (noise snapshot of an IBM Heron r3 processor, June 2026,
-the default of the simulation screen) and ibm_phoenix_2026-09-25 (live IBM Phoenix properties).
+Shipped snapshot: ibm_phoenix_2026-09-25 (live IBM Phoenix properties), the default of the
+simulation screen and of the noise-aware VQC training.
 
 Usage:
   uv run python scripts/build_noise_model.py --from-job data/hardware/<tag>/<job_id>.json --name <name>

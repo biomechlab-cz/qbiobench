@@ -16,7 +16,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "scripts"))
 from experiments.config import TASKS, SCREEN_CAPS, HW_PLAN      # noqa: E402
-from experiments.screen import load_task_split, FEAT             # noqa: E402
+from experiments.screen import load_task_split, load_screen_split, FEAT   # noqa: E402
 
 OUT = ROOT / "data" / "results" / "analysis_v2"
 
@@ -58,7 +58,8 @@ def main():
         cls = TASKS[task].get("classes")
         cap = SCREEN_CAPS[task]
         for s in (0, 1, 2):
-            Xtr, ytr, Xte, yte, nq, ml, gtr, gte = load_task_split(task, cap["train"], cap["test"], s, return_groups=True)
+            r = load_screen_split(task, cap["train"], cap["test"], s, return_groups=True)
+            ytr, yte, gtr, gte = r[1], r[3], r[8], r[9]
             subsets[f"screen/{task}/seed{s}"] = {"train": {**per_group(ytr, gtr), **class_counts(ytr, cls)},
                                                  "test": {**per_group(yte, gte), **class_counts(yte, cls)}}
         if task in HW_PLAN:

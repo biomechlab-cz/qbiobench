@@ -95,67 +95,67 @@
   "screen/apnea/seed0": {
    "train": {
     "n": 128,
-    "n_groups": 33,
+    "n_groups": 26,
     "per_group_min": 1,
-    "per_group_median": 3.0,
-    "per_group_max": 8,
-    "groups_all_one_class": 23,
-    "neg": 54,
-    "pos": 74
+    "per_group_median": 5.0,
+    "per_group_max": 9,
+    "groups_all_one_class": 17,
+    "neg": 69,
+    "pos": 59
    },
    "test": {
     "n": 128,
-    "n_groups": 35,
-    "per_group_min": 1,
-    "per_group_median": 3.0,
-    "per_group_max": 10,
-    "groups_all_one_class": 23,
-    "neg": 59,
-    "pos": 69
+    "n_groups": 9,
+    "per_group_min": 7,
+    "per_group_median": 13.0,
+    "per_group_max": 26,
+    "groups_all_one_class": 4,
+    "neg": 65,
+    "pos": 63
    }
   },
   "screen/apnea/seed1": {
    "train": {
     "n": 128,
-    "n_groups": 35,
+    "n_groups": 26,
     "per_group_min": 1,
-    "per_group_median": 4.0,
-    "per_group_max": 7,
-    "groups_all_one_class": 20,
-    "neg": 71,
-    "pos": 57
+    "per_group_median": 5.0,
+    "per_group_max": 10,
+    "groups_all_one_class": 11,
+    "neg": 65,
+    "pos": 63
    },
    "test": {
     "n": 128,
-    "n_groups": 35,
-    "per_group_min": 1,
-    "per_group_median": 3.0,
-    "per_group_max": 8,
-    "groups_all_one_class": 22,
-    "neg": 60,
-    "pos": 68
+    "n_groups": 9,
+    "per_group_min": 8,
+    "per_group_median": 13.0,
+    "per_group_max": 25,
+    "groups_all_one_class": 4,
+    "neg": 61,
+    "pos": 67
    }
   },
   "screen/apnea/seed2": {
    "train": {
     "n": 128,
-    "n_groups": 34,
+    "n_groups": 26,
     "per_group_min": 1,
-    "per_group_median": 3.0,
-    "per_group_max": 7,
-    "groups_all_one_class": 19,
-    "neg": 60,
-    "pos": 68
+    "per_group_median": 4.5,
+    "per_group_max": 9,
+    "groups_all_one_class": 13,
+    "neg": 66,
+    "pos": 62
    },
    "test": {
     "n": 128,
-    "n_groups": 33,
-    "per_group_min": 1,
-    "per_group_median": 4.0,
-    "per_group_max": 9,
-    "groups_all_one_class": 23,
-    "neg": 70,
-    "pos": 58
+    "n_groups": 8,
+    "per_group_min": 11,
+    "per_group_median": 16.0,
+    "per_group_max": 24,
+    "groups_all_one_class": 2,
+    "neg": 67,
+    "pos": 61
    }
   },
   "hardware/apnea/fqk": {
@@ -253,25 +253,25 @@
     "per_group_min": 1,
     "per_group_median": 1.0,
     "per_group_max": 1,
-    "groups_all_one_class": 32,
-    "NORM": 15,
-    "MI": 17,
-    "STTC": 30,
-    "CD": 21,
-    "HYP": 20
+    "groups_all_one_class": 39,
+    "NORM": 21,
+    "MI": 18,
+    "STTC": 25,
+    "CD": 17,
+    "HYP": 17
    },
    "test": {
     "n": 128,
-    "n_groups": 128,
+    "n_groups": 125,
     "per_group_min": 1,
     "per_group_median": 1.0,
-    "per_group_max": 1,
-    "groups_all_one_class": 96,
-    "NORM": 62,
-    "MI": 34,
-    "STTC": 25,
-    "CD": 29,
-    "HYP": 8
+    "per_group_max": 2,
+    "groups_all_one_class": 73,
+    "NORM": 26,
+    "MI": 49,
+    "STTC": 49,
+    "CD": 52,
+    "HYP": 48
    }
   },
   "screen/ptbxl/seed1": {
@@ -281,53 +281,53 @@
     "per_group_min": 1,
     "per_group_median": 1.0,
     "per_group_max": 1,
-    "groups_all_one_class": 42,
-    "NORM": 10,
-    "MI": 32,
-    "STTC": 27,
-    "CD": 30,
-    "HYP": 16
+    "groups_all_one_class": 41,
+    "NORM": 15,
+    "MI": 26,
+    "STTC": 28,
+    "CD": 26,
+    "HYP": 19
    },
    "test": {
     "n": 128,
-    "n_groups": 128,
+    "n_groups": 127,
     "per_group_min": 1,
     "per_group_median": 1.0,
-    "per_group_max": 1,
-    "groups_all_one_class": 90,
-    "NORM": 56,
-    "MI": 34,
-    "STTC": 38,
-    "CD": 28,
-    "HYP": 19
+    "per_group_max": 2,
+    "groups_all_one_class": 76,
+    "NORM": 26,
+    "MI": 51,
+    "STTC": 58,
+    "CD": 48,
+    "HYP": 42
    }
   },
   "screen/ptbxl/seed2": {
    "train": {
     "n": 64,
-    "n_groups": 63,
+    "n_groups": 64,
     "per_group_min": 1,
     "per_group_median": 1.0,
-    "per_group_max": 2,
-    "groups_all_one_class": 41,
-    "NORM": 11,
-    "MI": 31,
-    "STTC": 30,
-    "CD": 25,
+    "per_group_max": 1,
+    "groups_all_one_class": 34,
+    "NORM": 17,
+    "MI": 17,
+    "STTC": 27,
+    "CD": 24,
     "HYP": 22
    },
    "test": {
     "n": 128,
-    "n_groups": 128,
+    "n_groups": 127,
     "per_group_min": 1,
     "per_group_median": 1.0,
-    "per_group_max": 1,
-    "groups_all_one_class": 86,
-    "NORM": 54,
-    "MI": 32,
-    "STTC": 33,
-    "CD": 33,
-    "HYP": 13
+    "per_group_max": 2,
+    "groups_all_one_class": 78,
+    "NORM": 34,
+    "MI": 45,
+    "STTC": 38,
+    "CD": 54,
+    "HYP": 33
    }
   },
   "hardware/ptbxl/fqk": {

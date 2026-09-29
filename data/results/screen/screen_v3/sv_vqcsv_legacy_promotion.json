@@ -1,0 +1,16 @@
+[
+ {
+  "task": "apnea",
+  "model": "vqc",
+  "encoding": "angle",
+  "auc_mean": 0.6403786229085959,
+  "margin_to_next": 0.08167503322874003
+ },
+ {
+  "task": "ptbxl",
+  "model": "vqc",
+  "encoding": "zz",
+  "auc_mean": 0.5069785081502215,
+  "margin_to_next": 0.00036160369171645
+ }
+]

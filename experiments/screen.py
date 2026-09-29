@@ -4,10 +4,10 @@ Runs the 7 method cells x 3 seeds per task, ranks them, and applies the promotio
 
 Modes:
   sv     - noiseless statevector on the logical circuits (reference ranking)
-  noisy  - device noise: every circuit is transpiled onto the target of the noise snapshot of an
-           IBM Heron r3 processor (June 2026, data/noise/heron_r3_2026-06-11.pkl; error-aware
-           layout, device basis) and simulated with the matching noise model
-           (experiments/quantum_backend.NoisyCircuit). No error mitigation.
+  noisy  - device noise: every circuit is transpiled onto the target of a device noise snapshot
+           (--noise, a file stem in data/noise/; error-aware layout, device basis) and simulated
+           with the matching noise model (experiments/quantum_backend.NoisyCircuit). No error
+           mitigation. The default snapshot is ibm_phoenix_2026-09-25, the device of the hardware evaluation.
 
 Protocol:
   * caps: apnea/WESAD train 128 / test 128, PTB-XL train 64 / test 128
@@ -25,13 +25,14 @@ Protocol:
 Promotion rule: for each primary task, the encoding with the highest mean
 ROC-AUC within each model family (PQK, FQK, VQC) is promoted.
 
-Test data: the screen draws its test units from the same capped test pools that the hardware
-evaluation scores (apnea recordings x01-x35, PTB-XL folds 9-10), so the screen ranking and the
-promotion saw test data.
+Test data: with --holdout the screen draws its test units from recordings (apnea) or
+patient-disjoint folds (PTB-XL) of the training pool that its training units do not use
+(load_screen_split), so it never reads the evaluation pools (apnea recordings x01-x35, PTB-XL
+folds 9-10). Without --holdout the test units are draws from those evaluation pools.
 
 Usage:
-  uv run python experiments/screen.py --task all --mode noisy --jobs 28 --tag screen_v2
-  uv run python experiments/screen.py --task all --mode sv    --jobs 28 --tag screen_v2
+  uv run python experiments/screen.py --task all --mode noisy --holdout --noise ibm_phoenix_2026-09-25 --jobs 28 --tag screen_v3
+  uv run python experiments/screen.py --task all --mode sv    --holdout --jobs 28 --tag screen_v3
 """
 from __future__ import annotations
 
@@ -117,6 +118,44 @@ def load_task_split(task, train_cap=None, test_cap=None, seed=0, *, return_group
     return tuple(out)
 
 
+PTBXL_HOLDOUT_FOLD = {0: 8, 1: 7, 2: 6}                     # seed -> patient-disjoint dev fold held out
+
+
+def load_screen_split(task, train_cap, test_cap, seed, val_cap=128, return_groups=False):
+    """Held-out screen split (--holdout). Returns (Xtr, ytr, Xte, yte, n_qubits, multilabel, Xval, yval), followed by
+    the cluster ids (gtr, gte) of the training and test units if return_groups.
+
+    The test units come from part of the training pool that the training units never use: a quarter of the
+    Apnea-ECG training recordings (StratifiedGroupKFold(4, shuffle=True, random_state=seed), first split) or one
+    patient-disjoint PTB-XL dev fold (PTBXL_HOLDOUT_FOLD). The PCA is fitted on the remaining recordings or folds,
+    from which the training units and the VQC learning-curve units are drawn (disjoint), so the evaluation pools
+    are never read. WESAD has no evaluation pool and keeps the grouped subject holdout of load_task_split."""
+    if task == "wesad":
+        out = load_task_split(task, train_cap, test_cap, seed, return_groups=True, return_val=True, val_cap=val_cap)
+        return out[:6] + out[8:10] + (out[6:8] if return_groups else ())
+    spec = TASKS[task]
+    if task == "apnea":
+        from sklearn.model_selection import StratifiedGroupKFold
+        d = np.load(FEAT / "apnea_capped_train.npz")
+        X, y, g = d["X"], d["y"], d["groups"]
+        tr, ho = next(StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=seed).split(X, y, g))
+    else:
+        d = np.load(FEAT / "ptbxl_capped_dev.npz")
+        X, y = d["X"], d["y"]
+        g = _ptbxl_patients(d["ecg_id"]) if return_groups else np.zeros(len(y))
+        held = d["folds"] == PTBXL_HOLDOUT_FOLD[seed]
+        tr, ho = np.flatnonzero(~held), np.flatnonzero(held)
+    fr = FeatureReducer(spec["pca_dim"], seed=seed).fit(X[tr])
+    rng = np.random.default_rng(seed)
+    i = rng.choice(tr, min(train_cap, len(tr)), replace=False)
+    j = rng.choice(ho, min(test_cap, len(ho)), replace=False)
+    rest = np.setdiff1d(tr, i)
+    v = np.random.default_rng(seed + 1000).choice(rest, min(val_cap, len(rest)), replace=False)
+    t = fr.transform
+    out = (t(X[i]), y[i], t(X[j]), y[j], spec["qubits"], spec["type"] == "multilabel", t(X[v]), y[v])
+    return out + ((g[i], g[j]) if return_groups else ())
+
+
 # ----------------------------------------------------------------------------- one unit
 def _labels(y, ml):
     if not ml:
@@ -129,18 +168,25 @@ def _auc(y, p):
     return float(roc_auc_score(y, p))
 
 
-def run_unit(task, model, encoding, seed, mode, vqc_train="sv", hist_dir=None, vqc_loss="bce"):
+def run_unit(task, model, encoding, seed, mode, vqc_train="sv", hist_dir=None, vqc_loss="bce", holdout=False):
     from sklearn.svm import SVC
     from sklearn.model_selection import GridSearchCV
     from sklearn.preprocessing import StandardScaler
     from experiments.models import PQKQSVM, FQKQSVM, VQCReuploading, PQK_GRID
+    from experiments.quantum_backend import noise_name
     cap = SCREEN_CAPS[task]
-    Xtr, ytr, Xte, yte, nq, ml, Xv, yv = load_task_split(task, cap["train"], cap["test"], seed,
-                                                         return_val=True)
+    if holdout:
+        Xtr, ytr, Xte, yte, nq, ml, Xv, yv = load_screen_split(task, cap["train"], cap["test"], seed)
+    else:
+        Xtr, ytr, Xte, yte, nq, ml, Xv, yv = load_task_split(task, cap["train"], cap["test"], seed,
+                                                             return_val=True)
     t0 = time.time()
     out = {"task": task, "model": model, "encoding": encoding, "seed": seed, "mode": mode,
            "vqc_train": (vqc_train if model == "vqc" else None),
-           "vqc_loss": (vqc_loss if model == "vqc" else None)}
+           "vqc_loss": (vqc_loss if model == "vqc" else None),
+           "split": "holdout" if holdout else "evalpool",
+           "noise": noise_name() if mode == "noisy" or vqc_train == "noisy" else None,
+           "n_train": int(len(ytr)), "n_test": int(len(yte))}
 
     def kernel_cell(ablate):
         if model == "pqk":
@@ -239,7 +285,10 @@ def main():
     ap.add_argument("--models", nargs="*", default=["pqk", "fqk", "vqc"])
     ap.add_argument("--seeds", nargs="*", type=int, default=SEEDS)
     ap.add_argument("--jobs", type=int, default=1)
-    ap.add_argument("--tag", default="screen_v2")
+    ap.add_argument("--tag", default="screen_v3")
+    ap.add_argument("--holdout", action="store_true",
+                    help="draw the screen test units from held-out training recordings/folds (load_screen_split)")
+    ap.add_argument("--noise", default=None, help="noise snapshot (file stem in data/noise/), sets $QBIO_NOISE")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--aggregate-only", action="store_true", help="re-rank the logged units, run nothing")
     a = ap.parse_args()
@@ -247,7 +296,11 @@ def main():
         a.vqc_loss = "legacy"
     tasks = ["apnea", "wesad", "ptbxl"] if "all" in a.task else a.task
     units = [(t, m, e, s) for t in tasks for (m, e) in METHOD_CELLS if m in a.models for s in a.seeds]
-    print(f"{len(units)} units ({a.mode}, vqc_train={a.vqc_train}, jobs={a.jobs})", flush=True)
+    if a.noise:
+        os.environ["QBIO_NOISE"] = a.noise                # inherited by the loky workers
+    from experiments.quantum_backend import noise_name
+    print(f"{len(units)} units ({a.mode}, vqc_train={a.vqc_train}, holdout={a.holdout}, noise={noise_name()}, "
+          f"jobs={a.jobs})", flush=True)
     if a.dry_run:
         for u in units:
             print("  ", u)
@@ -269,7 +322,7 @@ def main():
     print(f"  {len(done)} already done, {len(todo)} to run", flush=True)
 
     def work(u):
-        r = run_unit(*u, a.mode, a.vqc_train, hist, a.vqc_loss)
+        r = run_unit(*u, a.mode, a.vqc_train, hist, a.vqc_loss, a.holdout)
         with open(parts[u[0]], "a") as f:                # crash-safe incremental log
             f.write(json.dumps(r) + "\n")
         noent = f" (no-ent {r['roc_auc_noent']:.4f})" if "roc_auc_noent" in r else ""

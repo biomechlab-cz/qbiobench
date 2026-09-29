@@ -9,9 +9,9 @@ Modes:
            estimator without `measure` would see no readout error. `NoisyCircuit` below
            handles the transpilation, compaction, and noise-model remapping.
 
-The default snapshot, heron_r3_2026-06-11, is the noise snapshot of an IBM Heron r3 processor
-(June 2026) used by the simulation screen (scripts/build_noise_model.py). Select another with
-$QBIO_NOISE (file stem in data/noise/).
+The default snapshot, ibm_phoenix_2026-09-25, holds the IBM Phoenix device properties used by the
+simulation screen and the noise-aware VQC training (scripts/build_noise_model.py). Select another
+with $QBIO_NOISE (file stem in data/noise/).
 """
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from qiskit_aer.noise import NoiseModel
 
 ROOT = Path(__file__).resolve().parent.parent
 NOISE_DIR = ROOT / "data" / "noise"
-DEFAULT_NOISE = "heron_r3_2026-06-11"      # noise snapshot of an IBM Heron r3 processor (June 2026)
+DEFAULT_NOISE = "ibm_phoenix_2026-09-25"   # IBM Phoenix device properties (screen, noise-aware VQC training)
 _cache: dict = {}
 
 

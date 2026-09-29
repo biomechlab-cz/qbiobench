@@ -70,7 +70,7 @@ FQK_LANDMARKS = 32     # Nystrom landmark count for noisy FQK (sv stays exact)
 # for PTB-XL multilabel the kernel/feature circuits are computed ONCE and reused across the 5
 # one-vs-rest SVMs (only the classical fit repeats). The kernel sizes of HW2_PLAN below are the
 # same. The VQC rows fix the VQC subset sizes only (512 caps the 510-minute Apnea-ECG pool); the
-# IBM Phoenix VQC cells use the encoding promoted by screen_v2 (angle). describe_data.py and
+# IBM Phoenix VQC cells use the angle encoding, which the screen promotes. describe_data.py and
 # analysis_hw.py read the sizes from here.
 HW_PLAN = {
     "apnea": [   # T2 binary, 6q
@@ -92,7 +92,7 @@ HW_PLAN = {
 def _hw2_plan():
     k = {"apnea": {"fqk": dict(L=16, n_train=64, n_test=80), "pqk": dict(n_train=256, n_test=416)},
          "ptbxl": {"fqk": dict(L=16, n_train=64, n_test=80), "pqk": dict(n_train=256, n_test=416)}}
-    vqc_enc = {"apnea": "angle", "ptbxl": "angle"}                # screen promotion (screen_v2)
+    vqc_enc = {"apnea": "angle", "ptbxl": "angle"}                # screen promotion
     vqc_n = {"apnea": 512, "ptbxl": 500}
     cells = []
     for mit in ("none",):
@@ -100,8 +100,7 @@ def _hw2_plan():
             for m in ("fqk", "pqk"):
                 cells.append({"id": f"{t}_{m}_{mit}", "task": t, "model": m, "encoding": "angle",
                               "mitig": mit, **k[t][m]})
-    # the screen_v2 promotion for the PTB-XL PQK family is ZZ (0.518 vs angle 0.499, a near tie
-    # at chance); PQK/angle is kept above as the kernel-protocol cell of HW_PLAN
+    # PTB-XL PQK/ZZ runs as an additional cell next to the promoted PQK/angle and is reported as such
     cells.append({"id": "ptbxl_pqk-zz_none", "task": "ptbxl", "model": "pqk", "encoding": "zz",
                   "mitig": "none", **k["ptbxl"]["pqk"]})
     for t in ("apnea", "ptbxl"):

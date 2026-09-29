@@ -37,10 +37,11 @@ encodings. Quantum and classical models see the same PCA features.
   or data re-uploading encoding. Every FQK and VQC cell has an entanglement-removed control.
 - Classical baselines on the same features: logistic regression, RBF support vector machine,
   XGBoost, and a multilayer perceptron (`experiments/baselines.py`).
-- Simulation screen (`experiments/screen.py`): 7 cells x 3 seeds x 3 tasks, with transpiled
-  circuits under the noise snapshot of an IBM Heron r3 processor (June 2026) and noiselessly. The
-  encoding with the highest mean ROC-AUC within each model family is promoted to hardware for each
-  primary task.
+- Simulation screen (`experiments/screen.py --holdout`): 7 cells x 3 seeds x 3 tasks, with
+  transpiled circuits under the IBM Phoenix noise snapshot and noiselessly, tested on training
+  recordings (Apnea-ECG) or a development fold (PTB-XL) held out from its training units, never on
+  the test pools. The encoding with the highest mean ROC-AUC within each model family is promoted to
+  hardware for each primary task, and PTB-XL PQK/ZZ runs as an additional cell.
 - Hardware protocol: 1024 shots, XY4 dynamical decoupling, and two mitigation arms, none and TREX
   (Estimator resilience level 1; the FQK overlap circuits run on the Sampler, which applies
   measurement twirling).
@@ -73,10 +74,10 @@ PQK/angle, and the noiselessly trained VQC also run with TREX. The run plan is
 |------|---------|
 | `data/results/hw/phoenix_2026-09/` | per-cell results, per-sample predictions, and the measured kernels and features of the IBM Phoenix run |
 | `data/results/analysis_v2/phoenix_2026-09_pool/` | per-cell metrics with cluster-bootstrap intervals, matched baselines, paired differences with Benjamini-Hochberg adjusted p values, and kernel diagnostics, for IBM Phoenix on the full test pools |
-| `data/results/screen/screen_v2/` | simulation screen, every unit, the seed means, and the promotion |
+| `data/results/screen/screen_v3/` | simulation screen, every unit, the seed means, and the promotion |
 | `data/results/baselines_*.csv` | classical baselines on the capped and full pools |
 | `data/hardware/phoenix_2026-09/` | raw IBM Quantum job records (gzip-compressed JSON), job index, run plan, and VQC weights |
-| `data/noise/`, `data/calibration/` | device noise snapshots (IBM Heron r3, June 2026, used by the screen, and IBM Phoenix) and the calibration table of the Heron r3 snapshot |
+| `data/noise/` | the IBM Phoenix device noise snapshot used by the screen and the noise-aware VQC training |
 
 [`data/README.md`](data/README.md) documents every file and column under `data/`.
 `./reproduce.sh tables` generates summary tables (`tables/*.csv`) and the data figures
@@ -140,7 +141,7 @@ spends QPU time.
 ./reproduce.sh features    # engineered features, capped and full pools (raw datasets)
 ./reproduce.sh baselines   # classical baselines on the capped and full pools
 ./reproduce.sh screen      # 7 cells x 3 seeds x 3 tasks: device-noise, noiseless, one-sided-objective VQC
-                           # (resumes from the shipped screen_v2 unit logs, see the table below)
+                           # (resumes from the shipped screen_v3 unit logs, see the table below)
 ./reproduce.sh replay      # recompute every hardware prediction from data/hardware/ (no IBM account)
 ./reproduce.sh analysis    # hardware statistics, paired tests, kernel diagnostics, data description
 ./reproduce.sh tables      # summary tables (tables/*.csv) and data figures (figures/*.pdf), generated locally
@@ -149,7 +150,7 @@ spends QPU time.
 
 Parallel simulation uses `JOBS` workers (default 16, `JOBS=8 ./reproduce.sh screen`).
 `QBIO_NOISE=<file stem in data/noise/>` selects the device noise snapshot (default
-`heron_r3_2026-06-11`, the noise snapshot of an IBM Heron r3 processor, June 2026). The `paper`
+`ibm_phoenix_2026-09-25`, the IBM Phoenix snapshot). The `paper`
 stage builds the article from its LaTeX sources, which are not part of this repository, so here it
 runs `tables` only.
 
@@ -161,7 +162,7 @@ What runs without the datasets:
 | `replay` | shipped job records and features, plus the PTB-XL metadata table | The replay (`hw_replay2.py`) has no task filter. Its PTB-XL cells read patient ids (the bootstrap clusters) from `ptbxl_database.csv` and `scp_statements.csv`: download these two files from PhysioNet (no waveforms needed) into a folder and set `QBIO_PTBXL` to it. The Apnea-ECG cells need nothing else. |
 | `analysis` | shipped features and predictions | The stage ends with `describe_data.py`, which needs the WESAD features and the PTB-XL metadata table (its output `data_description.json` is shipped), so without them run the analysis directly: `uv run python experiments/analysis_hw.py --tag phoenix_2026-09 --scope pool`. |
 | `baselines` | features | The stage runs `--task all`, which stops at the missing WESAD features, and the full pools need the datasets. From the shipped features run `uv run python experiments/run_baselines.py --task apnea --subset capped` and `--task ptbxl --subset capped`. |
-| `screen` | features | The stage resumes from the shipped unit logs in `data/results/screen/screen_v2/` and only re-ranks them, so it simulates nothing. To recompute the screen, use a fresh tag, for example `uv run python experiments/screen.py --task apnea ptbxl --mode noisy --jobs 16 --tag screen_check` (hours of device-noise simulation), and compare it with the shipped `screen_v2`. WESAD needs the dataset. |
+| `screen` | features | The stage resumes from the shipped unit logs in `data/results/screen/screen_v3/` and only re-ranks them, so it simulates nothing. To recompute the screen, use a fresh tag, for example `uv run python experiments/screen.py --task apnea ptbxl --mode noisy --holdout --jobs 16 --tag screen_check` (hours of device-noise simulation), and compare it with the shipped `screen_v3`. WESAD needs the dataset. |
 | `features` | raw datasets | rebuilds every feature file |
 
 ## Hardware stages (IBM Quantum account required, spends QPU time)

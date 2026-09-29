@@ -8,7 +8,6 @@ device noise snapshots, the capped engineered features, and every result table.
 |------|---------|-------------|---------|
 | `hardware/phoenix_2026-09/` | raw IBM Quantum job records, job index, run plan, trained VQC weights | `experiments/hw_archive.py`, `hw_run2.py`, `train_vqc_hw.py` | CC BY 4.0 |
 | `noise/` | device noise snapshots for simulation | `scripts/build_noise_model.py` | CC BY 4.0 |
-| `calibration/` | calibration table of the IBM Heron r3 processor of the screen's noise snapshot (June 2026) | IBM Quantum Platform export | CC BY 4.0 |
 | `features/` | capped engineered feature pools, PTB-XL and Apnea-ECG | `scripts/build_features.py` | source licences, see below |
 | `results/` | hardware predictions, statistics, screen, baselines | `experiments/*.py` (see `reproduce.sh`) | CC BY 4.0 |
 
@@ -57,23 +56,13 @@ from IBM (`hw_archive.py`), so these records are the reference copy.
 
 ## `noise/`
 
-`heron_r3_2026-06-11.pkl` (noise snapshot of an IBM Heron r3 processor, June 2026, device
-properties of 11 June 2026) and `ibm_phoenix_2026-09-25.pkl` (live IBM Phoenix properties of
-25 September 2026). Each is a pickled dict with `noise_model` (Qiskit Aer noise model as a dict),
+`ibm_phoenix_2026-09-25.pkl` (live IBM Phoenix properties of 25 September 2026). It is a pickled
+dict with `noise_model` (Qiskit Aer noise model as a dict),
 `target` (Qiskit `Target` of the device), `properties`, `configuration`, `basis_gates`, and
-`source`, with the device metadata kept as retrieved from the IBM Quantum Platform. They are used
-by `experiments/quantum_backend.py` (select with `QBIO_NOISE=<file stem>`, default
-`heron_r3_2026-06-11`). The simulation screen uses the Heron r3 snapshot, and the noise-aware VQC
-training of the IBM Phoenix run uses the IBM Phoenix snapshot. Unpickling needs the pinned Qiskit
+`source`, with the device metadata kept as retrieved from the IBM Quantum Platform. It is the default
+snapshot of `experiments/quantum_backend.py` (select another with `QBIO_NOISE=<file stem>`) and is
+used by the simulation screen and by the noise-aware VQC training of the IBM Phoenix run. Unpickling needs the pinned Qiskit
 versions (`uv.lock`), and a pickle can execute code, so load only copies from this repository.
-
-## `calibration/`
-
-`heron_r3_calibrations_2026-06-11.csv`: the calibration table of 11 June 2026 of the IBM Heron r3
-processor of the noise snapshot, as exported from the IBM Quantum Platform, one row per qubit (156)
-with T1, T2, readout errors, single-qubit and CZ/RZZ gate errors and lengths, and an `Operational`
-flag. It documents the device state behind the screen's noise snapshot. The code reads the device
-properties from the snapshot instead.
 
 ## `features/`
 
@@ -207,14 +196,14 @@ true: the `rbf_svm` rows of the four baseline families, every row of
 `trex_minus_none` and `hardware_minus_classical_pqk`, and the Nystrom rows of
 `hardware_minus_classical_fqk`. The `tuned_minus_asrun` rows are not adjusted (`p_bh` empty).
 
-### `screen/screen_v2/` (written by `screen.py`)
+### `screen/screen_v3/` (written by `screen.py --holdout`)
 
 File prefix `<mode>_vqcsv` for the device-noise (`noisy`) and noiseless (`sv`) screens with the
 VQC trained noiselessly on binary cross-entropy, and `sv_vqcsv_legacy` for the noiseless screen of
 the VQC with the one-sided objective (`screen.py --vqc-loss one-sided`).
 `*_units.jsonl` holds one line per (task, model, encoding, seed) unit, `*_raw.csv` the same as a
 table (`roc_auc`, `per_label_auc`, `depth`, `n_2q`, `phys_qubits`, `runtime_s`, `roc_auc_noent`,
-`ent_sensitivity`), `*_ranked.csv` the seed means (`auc_mean`, `auc_std`, `auc_noent_mean`), and
+`ent_sensitivity`, `split` = `holdout`, `noise` = the snapshot of noisy units, `n_train`, `n_test`), `*_ranked.csv` the seed means (`auc_mean`, `auc_std`, `auc_noent_mean`), and
 `*_promotion.json` the best encoding per model family and task with its margin to the next.
 `vqc_histories/*.json` store each VQC training run (`history`, `fit`, `n_weights`, `test_auc`).
 

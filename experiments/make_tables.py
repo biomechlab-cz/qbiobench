@@ -195,7 +195,7 @@ def tab_counts():
 
 
 # ----------------------------------------------------------------------------- tab:screen (results)
-SCREEN = RES / "screen" / "screen_v2"
+SCREEN = RES / "screen" / "screen_v3"        # IBM Phoenix noise model, held-out screen units (screen.py --holdout)
 
 
 def tab_screen():
@@ -222,16 +222,19 @@ def tab_screen():
             row.append(f"{q.auc_mean.iloc[0]:.3f}" if len(q) else "--")
         lines.append(" & ".join(row) + " \\\\")
     phx = read(RES / "hw" / PHOENIX / "cells.csv")
-    extra = sorted({(r.task, r.model.split("-")[0], r.encoding) for _, r in phx.iterrows() if not r.model.startswith("vqc")}
-                   - promoted)
-    if extra != [("ptbxl", "pqk", "angle")]:
-        raise ValueError(f"the caption names PTB-XL PQK/angle as the only executed kernel cell outside the promotion, got {extra}")
+    executed = {(r.task, r.model.split("-")[0], r.encoding) for _, r in phx.iterrows()}
+    missing = sorted(promoted - executed)
+    if missing:                                          # the text must say so; never silently fall back to another screen
+        raise ValueError(f"the screen promotes cells that did not run on IBM Phoenix: {missing}")
+    extra = sorted(executed - promoted)
+    if not set(extra) <= {("ptbxl", "pqk", "angle"), ("ptbxl", "pqk", "zz")}:
+        raise ValueError(f"the text names only a PTB-XL PQK encoding as executed outside the promotion, got {extra}")
     seeds = read(SCREEN / "noisy_vqcsv_raw.csv").seed.nunique()
     head = "Cell & \\multicolumn{2}{c}{apnea (T2)} & \\multicolumn{2}{c}{PTB-XL (T1)} & \\multicolumn{2}{c}{WESAD (T3)} \\\\\n" \
            "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\n & noisy & noiseless & noisy & noiseless & noisy & noiseless \\\\\n"
     s = ("\\begin{table*}[t]\n\\caption{Simulation screen, ROC-AUC mean $\\pm$ standard deviation over "
          f"{['zero', 'one', 'two', 'three', 'four', 'five'][seeds]} seeds. "
-         "Noisy columns use the noise model of an IBM Heron r3 processor (June 2026 calibration), with the entanglement-removed control in "
+         "Noisy columns use the IBM Phoenix noise model, with the entanglement-removed control in "
          "parentheses, and noiseless columns exact statevectors. The noisy FQK column uses a 32-landmark Nystr\\\"om kernel and the "
          "noiseless column the exact kernel. Italic cells are promoted to hardware.}"
          "\\label{tab:screen}\n\\centering\n\\small\n"
@@ -465,7 +468,10 @@ def repo_screen():
             rows.append({"_j": j, "_t": ["apnea", "ptbxl", "wesad"].index(r.task), "_m": ["fqk", "pqk", "vqc"].index(r.model),
                          "_e": list(ENC).index(r.encoding), "task": r.task, "cell": f"{r.model.upper()}/{ENC[r.encoding]}",
                          "model": r.model, "encoding": r.encoding, "mode": mode,
-                         "noise_model": "heron_r3_2026-06-11" if mode == "noisy" else "none",
+                         "noise_model": (raw.noise.dropna().iloc[0] if mode == "noisy" else "none"),
+                         "test_units": ({"apnea": "held-out training recordings", "ptbxl": "held-out dev fold",
+                                         "wesad": "held-out subjects"}[r.task] if (raw.split == "holdout").all()
+                                        else "evaluation pools"),
                          "objective": objective if r.model == "vqc" else "", "kernel": kern.get(r.model, ""),
                          "n_seeds": int(nseed), "auc_mean": r.auc_mean, "auc_std": r.auc_std,
                          "auc_noent_mean": r.auc_noent_mean, "two_qubit_gates": r.n_2q, "runtime_s": r.runtime_s,

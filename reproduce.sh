@@ -23,9 +23,9 @@ baselines() {
 }
 
 screen() {
-  $PY experiments/screen.py --task all --mode noisy --jobs "$JOBS" --tag screen_v2
-  $PY experiments/screen.py --task all --mode sv --jobs "$JOBS" --tag screen_v2
-  $PY experiments/screen.py --task all --mode sv --models vqc --vqc-loss one-sided --jobs "$JOBS" --tag screen_v2
+  $PY experiments/screen.py --task all --mode noisy --holdout --noise ibm_phoenix_2026-09-25 --jobs "$JOBS" --tag screen_v3
+  $PY experiments/screen.py --task all --mode sv --holdout --jobs "$JOBS" --tag screen_v3
+  $PY experiments/screen.py --task all --mode sv --models vqc --vqc-loss one-sided --holdout --jobs "$JOBS" --tag screen_v3
 }
 
 replay() {

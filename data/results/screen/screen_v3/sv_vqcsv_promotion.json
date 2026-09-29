@@ -1,0 +1,44 @@
+[
+ {
+  "task": "apnea",
+  "model": "fqk",
+  "encoding": "angle",
+  "auc_mean": 0.7008128755131446,
+  "margin_to_next": 0.1456407288802689
+ },
+ {
+  "task": "apnea",
+  "model": "pqk",
+  "encoding": "angle",
+  "auc_mean": 0.599465033964667,
+  "margin_to_next": 0.05103046189417615
+ },
+ {
+  "task": "apnea",
+  "model": "vqc",
+  "encoding": "angle",
+  "auc_mean": 0.68401832786467,
+  "margin_to_next": 0.1364883980983811
+ },
+ {
+  "task": "ptbxl",
+  "model": "fqk",
+  "encoding": "angle",
+  "auc_mean": 0.6473636137013529,
+  "margin_to_next": 0.159998881291262
+ },
+ {
+  "task": "ptbxl",
+  "model": "pqk",
+  "encoding": "angle",
+  "auc_mean": 0.58986347784989,
+  "margin_to_next": 0.10806407408194418
+ },
+ {
+  "task": "ptbxl",
+  "model": "vqc",
+  "encoding": "angle",
+  "auc_mean": 0.5861847187234585,
+  "margin_to_next": 0.07787061661578876
+ }
+]
